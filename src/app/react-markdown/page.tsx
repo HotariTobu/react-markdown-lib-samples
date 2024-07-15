@@ -1,6 +1,11 @@
 import { sample } from "@/sample.md";
 import Markdown from "react-markdown";
+
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+
+import rehypeKatex from 'rehype-katex'
+import remarkMath from 'remark-math'
+import 'katex/dist/katex.min.css' // `rehype-katex` does not import the CSS for you
 
 export default function Page() {
   return (
@@ -21,6 +26,9 @@ export default function Page() {
             </code>
           )
         }
-      }}>{sample}</Markdown>
+      }}
+      remarkPlugins={[remarkMath]}
+      rehypePlugins={[rehypeKatex]}
+    >{sample}</Markdown>
   )
 }
